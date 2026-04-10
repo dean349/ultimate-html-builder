@@ -282,32 +282,91 @@
             </div>
         </section>
 
-        <!-- The Prompt Section -->
-        <section id="prompt" class="container mx-auto px-6 max-w-5xl pt-32">
-            <div class="glass-card rounded-2xl p-8 md:p-12 relative overflow-hidden border-velyon-azure/30">
-                <div class="absolute top-0 right-0 p-8 opacity-[0.03]">
-                    <i data-lucide="terminal-square" class="w-64 h-64"></i>
+        <!-- How To Use & The Prompt -->
+        <section id="prompt" class="container mx-auto px-6 max-w-7xl pt-32">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- How to Use sidebar -->
+                <div class="lg:col-span-1 space-y-8">
+                    <div class="glass-card rounded-xl p-6 border-velyon-cyan/20">
+                        <h3 class="font-heading text-xl font-semibold mb-4 text-velyon-offwhite flex items-center gap-2">
+                            <i data-lucide="list-checks" class="h-5 w-5 text-velyon-cyan"></i> How to Use
+                        </h3>
+                        <ol class="space-y-3 text-sm text-velyon-grey font-body list-decimal list-inside marker:text-velyon-cyan">
+                            <li>Copy the prompt block <span class="hidden lg:inline">to the right</span><span class="lg:hidden">below</span></li>
+                            <li>Fill in all <code class="text-velyon-cyan font-mono text-xs bg-velyon-cyan/10 px-1.5 py-0.5 rounded border border-velyon-cyan/20">[PLACEHOLDERS]</code></li>
+                            <li>Delete any <code class="text-velyon-cyan font-mono text-xs bg-velyon-cyan/10 px-1.5 py-0.5 rounded border border-velyon-cyan/20">[OPTIONAL]</code> blocks you don't need</li>
+                            <li>Delete all save <code class="text-velyon-cyan font-mono text-xs bg-velyon-cyan/10 px-1.5 py-0.5 rounded border border-velyon-cyan/20">[OPTIONS]</code> except the one you want</li>
+                            <li>Paste into your agent conversation</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-6 border-white/5">
+                        <h3 class="font-heading text-lg font-semibold mb-4 text-velyon-offwhite flex items-center gap-2">
+                            <i data-lucide="info" class="h-4 w-4 text-velyon-grey"></i> Quick Reference
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="text-xs">
+                                <span class="block text-velyon-offwhite font-mono mb-1 bg-white/5 p-2 rounded border border-white/5 break-all">[YOUR PRODUCT/PAGE DESCRIPTION]</span>
+                                <span class="text-velyon-grey leading-relaxed">e.g., Velyon AI consultancy — premium services landing page</span>
+                            </div>
+                            <div class="text-xs">
+                                <span class="block text-velyon-offwhite font-mono mb-1 bg-white/5 p-2 rounded border border-white/5 break-all">"[your industry + keywords]"</span>
+                                <span class="text-velyon-grey leading-relaxed">e.g., "AI consulting premium executive dark mode"</span>
+                            </div>
+                            <div class="text-xs">
+                                <span class="block text-velyon-offwhite font-mono mb-1 bg-white/5 p-2 rounded border border-white/5">[page-name]</span>
+                                <span class="text-velyon-grey leading-relaxed">e.g., velyon-landing</span>
+                            </div>
+                            <div class="text-xs">
+                                <span class="block text-velyon-offwhite font-mono mb-1 bg-white/5 p-2 rounded border border-white/5">[subfolder]</span>
+                                <span class="text-velyon-grey leading-relaxed">e.g., output or pages</span>
+                            </div>
+                            <div class="text-xs">
+                                <span class="block text-velyon-offwhite font-mono mb-1 bg-white/5 p-2 rounded border border-white/5">[your-github-username]</span>
+                                <span class="text-velyon-grey leading-relaxed">e.g., dean349</span>
+                            </div>
+                            <div class="text-xs">
+                                <span class="block text-velyon-offwhite font-mono mb-1 bg-white/5 p-2 rounded border border-white/5">[your-repo-name]</span>
+                                <span class="text-velyon-grey leading-relaxed">e.g., velyon-design-system</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <h2 class="font-heading text-3xl font-bold mb-8 relative z-10">Copy The Prompt</h2>
-                
-                <div class="relative z-10 space-y-6">
-                    <div class="code-window rounded-lg overflow-hidden">
-                        <div class="px-4 py-2 bg-white/5 border-b border-white/5 flex justify-between items-center text-xs text-velyon-grey font-mono">
-                            <span>ultimate_builder.txt</span>
-                            <button onclick="copyPrompt()" class="hover:text-velyon-cyan transition-colors flex items-center gap-1 cursor-pointer">
-                                <i data-lucide="copy" class="h-3 w-3"></i> Copy
+
+                <!-- The Prompt -->
+                <div class="lg:col-span-2">
+                    <div class="glass-card rounded-2xl relative overflow-hidden border-velyon-azure/30 h-full flex flex-col">
+                        <div class="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
+                            <i data-lucide="terminal-square" class="w-64 h-64"></i>
+                        </div>
+                        
+                        <div class="px-6 py-5 border-b border-white/5 flex justify-between items-center z-10 relative bg-black/20">
+                            <h2 class="font-heading text-xl font-bold flex items-center gap-2">
+                                <i data-lucide="terminal" class="h-5 w-5 text-velyon-cyan"></i> The Ultimate Prompt
+                            </h2>
+                            <button onclick="copyPrompt()" class="hover:bg-white/10 px-4 py-2 rounded-md transition-colors flex items-center gap-2 cursor-pointer text-sm font-semibold border border-white/10 bg-white/5 text-velyon-offwhite active:scale-95">
+                                <i data-lucide="copy" class="h-4 w-4"></i> Copy Code
                             </button>
                         </div>
-                        <pre class="p-6 font-mono text-sm leading-relaxed text-velyon-offwhite overflow-x-auto" id="prompt-text">/ui Use the frontend-design skill, ui-ux-pro-max skill, and mcp_magic_21st_magic_component_builder 
-to build me a premium, single-file HTML landing page for [YOUR PRODUCT/PAGE DESCRIPTION HERE].
+                        
+                        <div class="relative z-10 flex-grow bg-[#0A0A0A] overflow-hidden flex flex-col">
+                            <div class="px-4 py-2 bg-gradient-to-r from-black/80 to-transparent border-b border-white/5 flex items-center text-xs text-velyon-grey font-mono shrink-0">
+                                <div class="flex gap-1.5 mr-4">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                                </div>
+                                ultimate_builder.txt
+                            </div>
+<pre class="p-6 font-mono text-[13px] leading-relaxed text-blue-100 overflow-x-auto overflow-y-auto max-h-[800px] scroll-smooth" id="prompt-text">/ui <span class="text-velyon-offwhite">Use the</span> <span class="text-green-300">frontend-design</span> <span class="text-velyon-offwhite">skill,</span> <span class="text-green-300">ui-ux-pro-max</span> <span class="text-velyon-offwhite">skill, and</span> <span class="text-yellow-300">mcp_magic_21st_magic_component_builder</span> 
+<span class="text-velyon-offwhite">to build me a premium, single-file HTML landing page for</span> <span class="text-velyon-cyan font-semibold">[YOUR PRODUCT/PAGE DESCRIPTION HERE]</span>.
 
-───────────────────────────────────────────
-CORE REQUIREMENTS
-───────────────────────────────────────────
-- Single self-contained .html file with all CSS and JS inline
+<span class="text-velyon-grey">───────────────────────────────────────────</span>
+<span class="font-bold text-white tracking-widest">CORE REQUIREMENTS</span>
+<span class="text-velyon-grey">───────────────────────────────────────────</span>
+<span class="text-velyon-offwhite">- Single self-contained .html file with all CSS and JS inline
 - Use the ui-ux-pro-max design system script to generate the full design system first:
-  python3 skills/ui-ux-pro-max/scripts/search.py "[your industry + keywords]" --design-system
+  python3 skills/ui-ux-pro-max/scripts/search.py "super modern, super high tech, Silicon Valley, AI developer/ AI marketing agency" --design-system
 - Use 21st_magic_component_builder to source UI components (hero, cards, nav, CTA, etc.)
 - Apply frontend-design principles: bold aesthetic direction, distinctive fonts 
   (NOT Inter/Roboto/Arial), micro-animations, atmospheric backgrounds, unexpected layouts
@@ -316,11 +375,98 @@ CORE REQUIREMENTS
 - SVG icons only (Heroicons/Lucide style) — no emojis as icons
 - Smooth CSS transitions (150–300ms) on all interactive elements
 - Google Fonts via CDN (pick something distinctive and appropriate)
-- Pre-delivery checklist verified: contrast, hover states, cursor-pointer, no layout shift</pre>
+- Pre-delivery checklist verified: contrast, hover states, cursor-pointer, no layout shift</span>
+
+<span class="text-velyon-grey">───────────────────────────────────────────</span>
+<span class="text-velyon-cyan/50 font-semibold text-xs tracking-wider">[OPTIONAL – DELETE IF NOT NEEDED]</span>
+<span class="font-bold text-white tracking-widest">GENERATE HERO IMAGES</span>
+<span class="text-velyon-grey">───────────────────────────────────────────</span>
+<span class="text-purple-300">- Use the generate_image tool to create real images for the hero and any visual sections
+- No placeholder images — generate all visuals from scratch to match the design aesthetic
+- The only caveat to the no-placeholder images is that the Velyon logo needs to be included in the Velyon proncon centre. Insert the </span><span class="text-velyon-cyan font-semibold">[YOUR COMPANY LOGO]</span><span class="text-purple-300"> when necessary and appropriate.</span>
+
+<span class="text-velyon-grey">───────────────────────────────────────────</span>
+<span class="text-velyon-cyan/50 font-semibold text-xs tracking-wider">[OPTIONAL – DELETE IF NOT NEEDED]</span>
+<span class="font-bold text-white tracking-widest">COPY & MESSAGING</span>
+<span class="text-velyon-grey">───────────────────────────────────────────</span>
+<span class="text-orange-200">- Use the copywriting skill to write all headlines, subheadings, and CTA copy
+- Messaging should be benefit-led, punchy, and conversion-focused</span>
+
+<span class="text-velyon-grey">───────────────────────────────────────────</span>
+<span class="text-velyon-cyan/50 font-semibold text-xs tracking-wider">[OPTIONAL – DELETE IF NOT NEEDED]</span>
+<span class="font-bold text-white tracking-widest">BRAND ALIGNMENT</span>
+<span class="text-velyon-grey">───────────────────────────────────────────</span>
+<span class="text-pink-200">- All .html pages must comform to </span><span class="text-velyon-cyan font-semibold">[YOUR COMPANY] BRAND DESIGN SYSTEM & [YOUR COMPANY] BRAND KIT & STYLE GUIDE </span>
+
+<span class="text-velyon-grey">───────────────────────────────────────────</span>
+<span class="font-bold text-white tracking-widest">SAVE LOCATION — CHOOSE ONE OR MORE, DELETE THE REST</span>
+<span class="text-velyon-grey">───────────────────────────────────────────</span>
+<span class="text-emerald-300 font-semibold">[OPTION A – LOCAL WORKSPACE]</span>
+<span class="text-velyon-offwhite">Save the completed file to:</span>
+<span class="text-emerald-100">c:\ANTIGRAVITY PROJECTS\VELYON - LEGAL COMMAND CENTER\</span><span class="text-velyon-cyan font-semibold">[subfolder]</span><span class="text-emerald-100">\</span><span class="text-velyon-cyan font-semibold">[page-name]</span><span class="text-emerald-100">.html</span>
+
+<span class="text-emerald-300 font-semibold">[OPTION B – GOOGLE DRIVE (if Drive for Desktop is installed)]</span>
+<span class="text-velyon-offwhite">Save the completed file to your synced Google Drive folder:</span>
+<span class="text-emerald-100">G:\My Drive\</span><span class="text-velyon-cyan font-semibold">[Your Folder]</span><span class="text-emerald-100">\</span><span class="text-velyon-cyan font-semibold">[page-name]</span><span class="text-emerald-100">.html</span>
+<span class="text-velyon-grey italic">(Adjust the drive letter if your Google Drive maps differently — check in File Explorer)</span>
+
+<span class="text-emerald-300 font-semibold">[OPTION C – GITHUB REPO (uses your GitHub MCP)]</span>
+<span class="text-velyon-offwhite">Commit the completed file directly to your GitHub repository using the github MCP tool:</span>
+<span class="text-emerald-100">- Repo owner: </span><span class="text-velyon-cyan font-semibold">[your-github-username]</span>
+<span class="text-emerald-100">- Repo name: </span><span class="text-velyon-cyan font-semibold">[your-repo-name]</span>
+<span class="text-emerald-100">- Branch: main
+- File path in repo: pages/</span><span class="text-velyon-cyan font-semibold">[page-name]</span><span class="text-emerald-100">.html
+- Commit message: "Add </span><span class="text-velyon-cyan font-semibold">[page-name]</span><span class="text-emerald-100"> landing page"</span>
+
+<span class="text-emerald-300 font-semibold">[OPTION D – ALL OF THE ABOVE]</span>
+<span class="text-velyon-offwhite">Save locally AND push to GitHub AND sync via Google Drive.</span></pre>
+                        </div>
                     </div>
-                    <p class="text-sm text-velyon-grey">
-                        <i data-lucide="info" class="inline h-4 w-4 mr-1"></i> Replace the bracketed text with your specific app or product idea.
-                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools & Skills Reference -->
+        <section class="container mx-auto px-6 max-w-7xl pt-24">
+            <div class="glass-card rounded-2xl p-8 lg:p-10 relative overflow-hidden border-white/5">
+                <h2 class="font-heading text-2xl font-bold mb-8 flex items-center gap-3">
+                    <i data-lucide="blocks" class="h-7 w-7 text-velyon-cyan"></i> Skills & MCP Tools Activated
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm font-body border-collapse min-w-[600px]">
+                        <thead>
+                            <tr class="border-b border-white/10 text-velyon-grey uppercase tracking-wider text-xs font-semibold">
+                                <th class="pb-4 px-4 w-1/3">Tool / Skill</th>
+                                <th class="pb-4 px-4 w-2/3">Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5">
+                            <tr class="hover:bg-white/5 transition-colors group">
+                                <td class="py-5 px-4 font-mono text-velyon-cyan text-sm group-hover:text-white transition-colors">frontend-design <span class="text-velyon-grey font-body text-xs ml-1 opacity-60">skill</span></td>
+                                <td class="py-5 px-4 text-velyon-offwhite text-[15px]">Bold aesthetic direction, production-grade HTML/CSS/JS</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors group">
+                                <td class="py-5 px-4 font-mono text-velyon-cyan text-sm group-hover:text-white transition-colors">ui-ux-pro-max <span class="text-velyon-grey font-body text-xs ml-1 opacity-60">skill</span></td>
+                                <td class="py-5 px-4 text-velyon-offwhite text-[15px]">Design system: fonts, colours, spacing, effects</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors group">
+                                <td class="py-5 px-4 font-mono text-[#00F0FF] text-sm group-hover:text-white transition-colors">mcp_magic_21st_magic_component_builder</td>
+                                <td class="py-5 px-4 text-velyon-offwhite text-[15px]">Sourcing premium React/HTML UI components</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors group">
+                                <td class="py-5 px-4 font-mono text-velyon-cyan text-sm group-hover:text-white transition-colors">generate_image <span class="text-velyon-grey font-body text-xs ml-1 opacity-60">tool</span></td>
+                                <td class="py-5 px-4 text-velyon-offwhite text-[15px]">AI-generated hero images (optional)</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors group">
+                                <td class="py-5 px-4 font-mono text-velyon-cyan text-sm group-hover:text-white transition-colors">copywriting <span class="text-velyon-grey font-body text-xs ml-1 opacity-60">skill</span></td>
+                                <td class="py-5 px-4 text-velyon-offwhite text-[15px]">Compelling headline and CTA copy (optional)</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors group">
+                                <td class="py-5 px-4 font-mono text-velyon-cyan text-sm group-hover:text-white transition-colors">github <span class="text-velyon-grey font-body text-xs ml-1 opacity-60">MCP</span></td>
+                                <td class="py-5 px-4 text-velyon-offwhite text-[15px]">Direct commit to GitHub repo (optional)</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
