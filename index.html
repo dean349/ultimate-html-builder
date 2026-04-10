@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate HTML Builder Prompt | Velyon</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        velyon: {
+                            obsidian: '#0A0A0A',
+                            graphite: '#171717',
+                            offwhite: '#F5F5F5',
+                            grey: '#A3A3A3',
+                            azure: '#1D4ED8',
+                            cyan: '#00F0FF',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        mono: ['"Fira Code"', 'monospace'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            background-color: #0A0A0A;
+            color: #F5F5F5;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Glows */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            background: 
+                radial-gradient(circle at 50% 0%, rgba(29, 78, 216, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 100% 50%, rgba(0, 240, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 0% 100%, rgba(29, 78, 216, 0.1) 0%, transparent 40%);
+            z-index: 0;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-card {
+            background-color: rgba(23, 23, 23, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .interactive-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 20px 40px -10px rgba(0, 240, 255, 0.15), inset 0 1px 0 rgba(0, 240, 255, 0.2);
+            transform: translateY(-4px) scale(1.01);
+            background-color: rgba(30, 30, 30, 0.8);
+        }
+
+        /* Code Block Styling */
+        .code-window {
+            background: linear-gradient(180deg, rgba(23,23,23,0.95) 0%, rgba(10,10,10,0.95) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
+        }
+
+        .code-window-header {
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0A0A0A; }
+        ::-webkit-scrollbar-thumb { background: #171717; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); }
+        ::-webkit-scrollbar-thumb:hover { background: #A3A3A3; }
+        
+        /* Shimmer Effect */
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+    </style>
+</head>
+<body class="font-body antialiased min-h-screen selection:bg-velyon-cyan/30 selection:text-velyon-offwhite">
+
+    <div class="ambient-glow"></div>
+
+    <!-- Navigation -->
+    <header class="fixed top-0 z-50 w-full border-b border-white/5 bg-velyon-obsidian/80 backdrop-blur-md transition-all duration-300">
+        <div class="container mx-auto px-6 h-16 flex items-center justify-between max-w-7xl">
+            <div class="flex items-center gap-3">
+                <div class="h-8 w-8 rounded bg-velyon-azure/20 border border-velyon-azure/30 flex items-center justify-center">
+                    <i data-lucide="code-2" class="h-4 w-4 text-velyon-cyan"></i>
+                </div>
+                <span class="font-heading text-lg font-bold tracking-tight text-velyon-offwhite">VELYON</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#features" class="font-heading text-sm font-medium text-velyon-grey hover:text-velyon-offwhite transition-colors duration-300">Features</a>
+                <a href="#components" class="font-heading text-sm font-medium text-velyon-grey hover:text-velyon-offwhite transition-colors duration-300">Methodology</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="#prompt" class="font-heading relative overflow-hidden group inline-flex items-center justify-center rounded-md text-sm font-semibold transition-all duration-500 focus-visible:outline-none bg-gradient-to-r from-velyon-cyan to-[#80F8FF] border border-white/50 text-velyon-obsidian shadow-[0_0_20px_rgba(0,240,255,0.2)] hover:shadow-[0_0_30px_rgba(0,240,255,0.5)] h-9 px-4">
+                    <span class="relative z-10 flex items-center">Get the Prompt</span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/60 to-white/0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10 pt-32 pb-24">
+        
+        <!-- Hero Section (Variant 5 Style) -->
+        <section class="container mx-auto px-6 max-w-7xl relative pt-12 lg:pt-20">
+            <div class="flex flex-col items-center text-center space-y-8 relative z-20 max-w-4xl mx-auto">
+                
+                <!-- Animated Badge -->
+                <div class="inline-flex items-center rounded-full border border-velyon-cyan/30 bg-velyon-cyan/10 px-4 py-1.5 text-sm font-medium text-velyon-cyan font-heading transition-all duration-300 hover:bg-velyon-cyan/20 animate-fade-in-up">
+                    <span class="relative flex h-2 w-2 mr-2 border-none">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-velyon-cyan opacity-75 border-none"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-velyon-cyan border-none"></span>
+                    </span>
+                    Agentic Coding Protocol 1.0
+                </div>
+
+                <!-- Headline -->
+                <h1 class="font-heading text-5xl md:text-7xl font-bold tracking-tight text-velyon-offwhite leading-[1.1] animate-fade-in-up" style="animation-delay: 100ms;">
+                    The Ultimate <br/>
+                    <span class="relative inline-block mt-2">
+                        <span class="absolute -inset-2 bg-gradient-to-r from-velyon-azure/20 to-velyon-cyan/20 blur-xl"></span>
+                        <span class="relative bg-gradient-to-r from-white via-velyon-cyan to-velyon-azure bg-clip-text text-transparent">HTML Builder Prompt</span>
+                    </span>
+                </h1>
+
+                <!-- Subheadline -->
+                <p class="text-lg md:text-xl text-velyon-grey max-w-2xl font-body font-light leading-relaxed animate-fade-in-up" style="animation-delay: 200ms;">
+                    Stop getting generic AI slop. Generate premium, production-grade, single-file HTML landing pages with true executive-level aesthetic direction.
+                </p>
+
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row gap-4 pt-6 animate-fade-in-up" style="animation-delay: 300ms;">
+                    <a href="#prompt" class="font-heading group relative overflow-hidden flex items-center justify-center rounded-md text-base font-bold transition-all duration-500 bg-gradient-to-r from-white to-velyon-offwhite border border-white/50 text-velyon-obsidian shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] h-12 px-8">
+                        <span class="relative z-10 flex items-center">Copy the Prompt <i data-lucide="clipboard-copy" class="ml-2 h-5 w-5 opacity-80"></i></span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                    </a>
+                    <a href="#features" class="font-heading inline-flex items-center justify-center rounded-md text-base font-medium transition-all duration-300 bg-black/40 backdrop-blur-md border border-white/10 text-velyon-offwhite hover:bg-white/10 hover:border-white/20 h-12 px-8">
+                        See How It Works
+                    </a>
+                </div>
+            </div>
+
+            <!-- Floating UI Elements (Glassmorphism) -->
+            <div class="relative mt-20 md:mt-24 w-full max-w-5xl mx-auto h-[400px] sm:h-[500px] animate-fade-in-up" style="animation-delay: 400ms;">
+                
+                <!-- Central Code Window -->
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl code-window rounded-xl overflow-hidden z-20">
+                    <div class="code-window-header px-4 py-3 flex items-center gap-2">
+                        <div class="flex gap-1.5">
+                            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                        </div>
+                        <div class="ml-4 font-mono text-xs text-velyon-grey">prompt.txt</div>
+                    </div>
+                    <div class="p-6 font-mono text-sm leading-relaxed overflow-x-auto">
+                        <span class="text-pink-400">/ui</span> <span class="text-blue-300">Use the</span> <span class="text-green-300">frontend-design</span> <span class="text-blue-300">skill</span>,<br>
+                        <span class="text-green-300">ui-ux-pro-max</span> <span class="text-blue-300">skill</span>, <span class="text-blue-300">and</span><br>
+                        <span class="text-yellow-300">mcp_magic_21st_magic_component_builder</span><br>
+                        <br>
+                        <span class="text-velyon-grey">// CORE REQUIREMENTS</span><br>
+                        <span class="text-blue-200">to build me a premium, single-file HTML</span><br>
+                        <span class="text-blue-200">landing page for</span> <span class="text-velyon-cyan font-semibold">[YOUR APP IDEA]</span>.<br>
+                        <br>
+                        <span class="text-purple-300">Apply Dark mode premium aesthetic</span><br>
+                        <span class="text-purple-300">with glassmorphism and depth...</span>
+                    </div>
+                </div>
+
+                <!-- Floating Card Left -->
+                <div class="hidden md:flex absolute left-0 top-1/4 glass-card rounded-xl p-4 flex-col gap-3 w-48 z-30 animate-float">
+                    <div class="flex items-center gap-3">
+                        <div class="h-8 w-8 rounded-full bg-velyon-azure/20 flex items-center justify-center">
+                            <i data-lucide="sparkles" class="h-4 w-4 text-velyon-cyan"></i>
+                        </div>
+                        <div class="font-heading text-sm font-semibold">UI UX Pro Max</div>
+                    </div>
+                    <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                        <div class="h-full bg-velyon-cyan w-[85%]"></div>
+                    </div>
+                </div>
+
+                <!-- Floating Card Right -->
+                <div class="hidden md:flex absolute right-0 bottom-1/4 glass-card rounded-xl p-5 flex-col gap-3 w-56 z-10 animate-float-delayed">
+                    <div class="font-heading text-xs uppercase tracking-widest text-velyon-grey mb-1">Aesthetic Check</div>
+                    <div class="flex gap-2 items-center text-sm">
+                        <i data-lucide="check-circle-2" class="h-4 w-4 text-green-400"></i> Glassmorphism
+                    </div>
+                    <div class="flex gap-2 items-center text-sm">
+                        <i data-lucide="check-circle-2" class="h-4 w-4 text-green-400"></i> Typography Pairings
+                    </div>
+                    <div class="flex gap-2 items-center text-sm">
+                        <i data-lucide="check-circle-2" class="h-4 w-4 text-green-400"></i> Fluid Animations
+                    </div>
+                </div>
+
+                <!-- Glow Behind Code Window -->
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-velyon-azure/20 blur-[100px] z-0 rounded-full animate-pulse-slow"></div>
+            </div>
+        </section>
+
+        <!-- Features Matrix -->
+        <section id="features" class="container mx-auto px-6 max-w-7xl pt-32">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">Engineered for Perfection</h2>
+                <p class="text-velyon-grey max-w-2xl mx-auto font-light">Why this prompt produces dramatically better results than standard AI queries.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Feature 1 -->
+                <div class="glass-card interactive-card p-8 rounded-xl font-body">
+                    <div class="h-12 w-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6">
+                        <i data-lucide="layers" class="h-6 w-6 text-velyon-offwhite"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold mb-3">Skill Orchestration</h3>
+                    <p class="text-velyon-grey text-sm leading-relaxed">
+                        Forces the agent to simultaneously load the UI/UX intelligence system and the frontend design directive before writing a single line of code.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-card interactive-card p-8 rounded-xl font-body border-velyon-cyan/20">
+                    <div class="h-12 w-12 rounded-lg bg-velyon-cyan/10 border border-velyon-cyan/20 flex items-center justify-center mb-6">
+                        <i data-lucide="wand-2" class="h-6 w-6 text-velyon-cyan"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold mb-3">Magic Components</h3>
+                    <p class="text-velyon-grey text-sm leading-relaxed">
+                        Activates the 21st.dev MCP tool automatically, sourcing premium React and shadcn-style components instead of hallucinating basic HTML.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-card interactive-card p-8 rounded-xl font-body">
+                    <div class="h-12 w-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6">
+                        <i data-lucide="ruler" class="h-6 w-6 text-velyon-offwhite"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold mb-3">Constrained Creativity</h3>
+                    <p class="text-velyon-grey text-sm leading-relaxed">
+                        Explicit limiters ("NOT Inter/Roboto", "No emojis as icons") prevent the model from defaulting to the generic AI aesthetic it was trained on.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Prompt Section -->
+        <section id="prompt" class="container mx-auto px-6 max-w-5xl pt-32">
+            <div class="glass-card rounded-2xl p-8 md:p-12 relative overflow-hidden border-velyon-azure/30">
+                <div class="absolute top-0 right-0 p-8 opacity-[0.03]">
+                    <i data-lucide="terminal-square" class="w-64 h-64"></i>
+                </div>
+                
+                <h2 class="font-heading text-3xl font-bold mb-8 relative z-10">Copy The Prompt</h2>
+                
+                <div class="relative z-10 space-y-6">
+                    <div class="code-window rounded-lg overflow-hidden">
+                        <div class="px-4 py-2 bg-white/5 border-b border-white/5 flex justify-between items-center text-xs text-velyon-grey font-mono">
+                            <span>ultimate_builder.txt</span>
+                            <button onclick="copyPrompt()" class="hover:text-velyon-cyan transition-colors flex items-center gap-1 cursor-pointer">
+                                <i data-lucide="copy" class="h-3 w-3"></i> Copy
+                            </button>
+                        </div>
+                        <pre class="p-6 font-mono text-sm leading-relaxed text-velyon-offwhite overflow-x-auto" id="prompt-text">/ui Use the frontend-design skill, ui-ux-pro-max skill, and mcp_magic_21st_magic_component_builder 
+to build me a premium, single-file HTML landing page for [YOUR PRODUCT/PAGE DESCRIPTION HERE].
+
+───────────────────────────────────────────
+CORE REQUIREMENTS
+───────────────────────────────────────────
+- Single self-contained .html file with all CSS and JS inline
+- Use the ui-ux-pro-max design system script to generate the full design system first:
+  python3 skills/ui-ux-pro-max/scripts/search.py "[your industry + keywords]" --design-system
+- Use 21st_magic_component_builder to source UI components (hero, cards, nav, CTA, etc.)
+- Apply frontend-design principles: bold aesthetic direction, distinctive fonts 
+  (NOT Inter/Roboto/Arial), micro-animations, atmospheric backgrounds, unexpected layouts
+- Dark mode premium aesthetic with glassmorphism and depth
+- Fully responsive: 375px, 768px, 1024px, 1440px breakpoints
+- SVG icons only (Heroicons/Lucide style) — no emojis as icons
+- Smooth CSS transitions (150–300ms) on all interactive elements
+- Google Fonts via CDN (pick something distinctive and appropriate)
+- Pre-delivery checklist verified: contrast, hover states, cursor-pointer, no layout shift</pre>
+                    </div>
+                    <p class="text-sm text-velyon-grey">
+                        <i data-lucide="info" class="inline h-4 w-4 mr-1"></i> Replace the bracketed text with your specific app or product idea.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-velyon-obsidian/50 mt-20">
+        <div class="container mx-auto px-6 py-12 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <div class="h-6 w-6 rounded bg-velyon-azure/20 border border-velyon-azure/30 flex items-center justify-center">
+                    <i data-lucide="code-2" class="h-3 w-3 text-velyon-cyan"></i>
+                </div>
+                <span class="font-heading font-bold text-velyon-offwhite opacity-80">VELYON</span>
+            </div>
+            <p class="font-body text-sm text-velyon-grey">
+                Built using the Ultimate HTML Builder Prompt.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Copy functionality
+        function copyPrompt() {
+            const text = document.getElementById('prompt-text').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector('button[onclick="copyPrompt()"]');
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = '<i data-lucide="check" class="h-3 w-3 text-velyon-cyan"></i> <span class="text-velyon-cyan">Copied!</span>';
+                lucide.createIcons();
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    lucide.createIcons();
+                }, 2000);
+            });
+        }
+        
+        // Dynamic animation classes
+        document.addEventListener("DOMContentLoaded", () => {
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInUp {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                .animate-fade-in-up {
+                    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+                    opacity: 0;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
